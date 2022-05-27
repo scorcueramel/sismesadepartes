@@ -14,7 +14,7 @@ class TipoRepresentantesTable extends Migration
     public function up()
     {
         Schema::create('tipo_representante', function (Blueprint $table) {
-            $table->id();
+            $table->increments('t_repre_id');
             $table->char('tipo',25);
             $table->timestamps();
         });

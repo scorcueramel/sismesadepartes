@@ -6,23 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class CentroServiciosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        //
+        Schema::create('centro_servicios', function (Blueprint $table){
+            $table->increments('censerv_id');
+            $table->char('direccion_centro', 100);
+            $table->timestamps();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        //
+        Schema::dropIfExists('centro_servicios');
     }
 }
