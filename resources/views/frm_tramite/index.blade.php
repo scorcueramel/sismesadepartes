@@ -6,16 +6,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <title>Registro - Inicio de trámite</title>
 </head>
 <body>
 <div class="container">
     <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data" id="formulario">
         @csrf
-        <h1 class="text-center" style="margin-top: 5%; margin-bottom: 3%;">Mesa de Partes Virtual</h1>
-        <div class="card text-center">
+        <h1 class="text-center" style="margin-top: 3%; margin-bottom: 3%;">Mesa de Partes Virtual</h1>
+        <div class="card">
             <div class="card-header">
                 <p class="h5">DATOS DEL DOCUMENTO</p>
             </div>
@@ -25,18 +27,154 @@
                         <p class="h6 mt-2">CENTROS DE SERVICIOS</p>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
-                        <select name="" id="" class="form-control">
-                            <option value="0">--Seleccione--</option>
+                        <select name="" id="" class="form-control" required>
+                            <option value="0">Seleccione un Centro de Servicio</option>
                             @foreach($servcent as $i)
                                 <option value="{{$i->censerv_id}}">{{$i->direccion_centro}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-3">
-                        <a href="#" class="btn btn-success" style="border-radius: 50%;">
-                            <box-icon name='file-find' flip='horizontal' color='#ffffff' ></box-icon>
+                        <a href="#" class="btn btn-success" style="border-radius: 50%; width: 35px;  height: 35px" data-toggle="modal" data-target="#modal1">
+                            <box-icon name='file-find' flip='horizontal' color='#ffffff' style="margin-left: -14px; margin-top: -1px; width: 30px;  height: 30px"></box-icon>
                         </a>
                         Ver mapa de direcciones
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">TIPO DE DOCUMENTO</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <select name="" id="" class="form-control" required>
+                            <option value="0">Seleccione un Tipo de Documento</option>
+                            @foreach($tipodoc as $i)
+                                <option value="{{$i->t_doc_id}}">{{$i->desc_documento}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">NÚMERO DE DOCUMENTO</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <input type="text" class="form-control" id="nrodoc" placeholder="Número de documento" name="nrodoc" required>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                    </div>
+                </div>
+                <div class="row mt-1 ">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">FECHA DEL DOCUMENTO</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <input type="text"  class="form-control"  id="datepicker" placeholder="Fecha del documento" name="nrodoc" required/>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">NÚMERO DE PÁGINA</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <input type="text" class="form-control" id="nropag" placeholder="Número de página" name="nropag" required>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">ASUNTO DEL DOCUMENTO</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <textarea class="form-control" rows="3" name="asunto"></textarea>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-header">
+                <p class="h5">DATOS DEL SOLICITANTE</p>
+            </div>
+            <div class="card-body">
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">NOMBRE DEL REMITENTE</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <input type="text" class="form-control" id="nomremitente" placeholder="Nombre del remitente" name="nomremitente" required>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">NOMBRE DEL NUEVO REMITENTE</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-2">
+                        <input type="text" class="form-control" id="nomnueremitente" placeholder="Nombre del nuevo remitente" name="nomnueremitente" disabled>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                        <button type="button" class="btn btn-primary" style="border-radius: 50%; width: 35px;  height: 35px" id="agregar">
+                            <box-icon name='plus-medical' color='#ffffff' style="margin-left: -7px; margin-top: -1px; width: 30px;  height: 30px"></box-icon>
+                        </button>
+                        <form action="">
+                            @csrf
+                            <button type="submit" class="btn btn-warning" style="border-radius: 50%;width: 35px;  height: 35px" id="salvar">
+                                <box-icon name='save' type='solid' color='#ffffff' style="margin-left: -7px; margin-top: -1px; width: 30px;  height: 30px"></box-icon>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mt-1 mb-3">
+                    <div class="col-auto">
+                        <span style="color: #006EAA; font-size: 13px">En caso de no encontrar su nombre, dar clic en (+), luego escribir su nombre en el campo habilitado y dar clic en el boton grabar para registrarlo.</span>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">TIPO DE REPRESENTANTE</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <select name="" id="" class="form-control" required>
+                            <option value="0">Seleccione un Tipo de Representante</option>
+                            @foreach($tiporepre as $i)
+                                <option value="{{$i->t_repre_id}}">{{$i->tipo}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                    </div>
+                </div>
+                <div class="row mt-1 ">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">TIPO DE DOCUMENTO DE IDENTIDAD</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <select name="" id="" class="form-control" required>
+                            <option value="0">Seleccione un Tipo de Documento de Identidad</option>
+                            @foreach($tipodocidenti as $i)
+                                <option value="{{$i->t_doc_ident_id}}">{{$i->t_doc_identidad}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-2">
+                        <p class="h6 mt-2">NÚMERO DE DOCUMENTO DE IDENTIDAD</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3 mb-3">
+                        <input type="text" class="form-control" id="numdocidenti" placeholder="Número de documento de identidad" name="numdocidenti">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-3">
                     </div>
                 </div>
             </div>
@@ -170,8 +308,26 @@
         </div>
     </div>
 </div>
-
-<!-- Modal -->
+<!-- Modal mapa de centros de servicios-->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mapa de Centros de Servicios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-justify">
+                <img src="{{url('/storage/mapa_del_peru.png')}}" alt="mapa de centro de servicios" style="width: 95vh;height: 100vh;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Politicas-->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -235,8 +391,27 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 
 <script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+
+
+    $(()=>{
+        $('#agregar').on('click',()=>{
+            if ($('#nomnueremitente').attr('disabled')) {
+                $('#nomnueremitente').removeAttr('disabled');
+                $('#nomnueremitente').focus();
+            } else {
+                $('#nomnueremitente').attr('disabled',true);
+            }
+        });
+    });
+
+
     $(() => {
         $('#domiciliodni').on('change', (e) => {
             if ($(e.target).val() === 'No'){
