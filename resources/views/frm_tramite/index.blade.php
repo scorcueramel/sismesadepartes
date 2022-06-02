@@ -18,29 +18,33 @@
                     </div>
                     <div class="steps-content">
                         <h3>Paso <span class="step-number">1</span></h3>
-                        <p class="step-number-content active">Enter your personal information to get closer to companies.</p>
-                        <p class="step-number-content d-none">Get to know better by adding your diploma,certificate and education life.</p>
-                        <p class="step-number-content d-none">Help companies get to know you better by telling then about your past experiences.</p>
-                        <p class="step-number-content d-none">Add your profile piccture and let companies find youy fast.</p>
+                        <p class="step-number-content active">Ingresa información corresponddiente al documento.</p>
+                        <p class="step-number-content d-none">Ingresa la información personal del solicitante.</p>
+                        <p class="step-number-content d-none">Ingresa la información correspondiente para la notificación.</p>
+                        <p class="step-number-content d-none">Carga el archivo necesario para su validación y atención.</p>
                     </div>
                     <ul class="progress-bar">
-                        <li class="active">Personal Information</li>
-                        <li>Education</li>
-                        <li>Work Experience</li>
-                        <li>User Photo</li>
+                        <li class="active">Datos del Documento</li>
+                        <li>Datos del Solicitante</li>
+                        <li>Datos para Notificar</li>
+                        <li>Carga de Archivo</li>
                     </ul>   
                 </div>
                 <div class="right-side">
                     <div class="main active">
-                        <small><i class="fa fa-smile-o"></i></small>
+                        <small><i class="fa fa-file"></i></small>
                         <div class="text">
-                            <h2>Your Personal Information</h2>
-                            <p>Enter your personal information to get closer to copanies.</p>
+                            <h2>Datos del Documento</h2>
+                            <p>Ingresa información corresponddiente al documento.</p>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
-                                <input type="text" required require id="user_name">
-                                <span>First Name</span>
+                                <select name="" class="form-control" id="centro_servicio" required require>
+                                    <option value="0" style="color:#4c5b68;">Centros de Servicios</option>
+                                    @foreach($servcent as $i)
+                                        <option value="{{$i->censerv_id}}">{{$i->direccion_centro}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="input-div"> 
                                 <input type="text" required>
@@ -96,8 +100,8 @@
                     <div class="main">
                         <small><i class="fa fa-smile-o"></i></small>
                         <div class="text">
-                            <h2>Education</h2>
-                            <p>Inform companies about your education life.</p>
+                            <h2>Datos del Solicitante</h2>
+                            <p>Ingresa la información personal del solicitante.</p>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
@@ -139,8 +143,8 @@
                     <div class="main">
                         <small><i class="fa fa-smile-o"></i></small>
                         <div class="text">
-                            <h2>Work Experiences</h2>
-                            <p>Can you talk about your past work experience?</p>
+                            <h2>Datos para Notificar</h2>
+                            <p>Ingresa la información correspondiente para la notificación.</p>
                         </div>
                         <div class="input-text">
                             <div class="input-div">
@@ -183,14 +187,13 @@
                     <div class="main">
                         <small><i class="fa fa-smile-o"></i></small>
                         <div class="text">
-                            <h2>User Photo</h2>
-                            <p>Upload your profile picture and share yourself.</p>
+                            <h2>Carga de Archivo</h2>
+                            <p>Carga el archivo necesario para su validación y atención.</p>
                         </div>
                         <div class="user_card">
                             <span></span>
                             <div class="circle">
                                 <span><img src="https://i.imgur.com/hnwphgM.jpg"></span>
-                                
                             </div>
                             <div class="social">
                                 <span><i class="fa fa-share-alt"></i></span>

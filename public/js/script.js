@@ -26,14 +26,14 @@ back_click.forEach(function(back_click_form){
     });
 });
 
-var username=document.querySelector("#user_name");
+var centroservicio=document.querySelector("#centro_servicio");
 var shownname=document.querySelector(".shown_name");
  
 
 var submit_click=document.querySelectorAll(".submit_button");
 submit_click.forEach(function(submit_click_form){
     submit_click_form.addEventListener('click',function(){
-       shownname.innerHTML= username.value;
+       shownname.innerHTML= centroservicio.value;
        formnumber++;
        updateform(); 
     });
