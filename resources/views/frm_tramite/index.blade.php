@@ -40,7 +40,7 @@
                         <div class="input-text">
                             <div class="input-div">
                                 <select name="" class="form-control" id="centro_servicio" required require>
-                                    <option value="0" style="color:#4c5b68;">Centros de Servicios</option>
+                                    <option value="0">Centros de Servicios</option>
                                     @foreach($servcent as $i)
                                         <option value="{{$i->censerv_id}}">{{$i->direccion_centro}}</option>
                                     @endforeach
@@ -48,7 +48,6 @@
                             </div>
                             <div class="input-div"> 
                                 <input type="text" required>
-                                <span>Last Name</span>
                             </div>
                         </div>
                         <div class="input-text">
